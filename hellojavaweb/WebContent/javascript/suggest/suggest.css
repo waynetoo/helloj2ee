@@ -1,0 +1,43 @@
+.suggestParent {
+	position:relative;
+	overflow: visible;
+}
+.suggestUl {
+	list-style-type: none; 
+	position:absolute; 
+	top:22px;
+	left:-40px;
+	margin-top:0px;
+	padding-left:0px;
+	border-style:solid;
+	border-color:#000000;
+	border-width:1px;
+	background-color:#FFFFFF;
+	cursor:default;
+	font-size: 13px;
+	z-index:1000000;
+	overflow: visible;
+	text-align: left;
+}
+.tpsEle{
+	width:100%;
+	background-color: "";
+	color: #000000;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 3px;
+	white-space:nowrap;
+	overflow: visible;
+}
+.tpsEleSeled{
+	width:100%;
+	background-color: highlight;
+	color: #ffffff;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 3px;
+	white-space:nowrap;
+	overflow: visible;
+}

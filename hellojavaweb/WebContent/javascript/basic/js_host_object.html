@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> new document </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ </head>
+
+ <body>
+ //onclick ondblclick onfocus onblur onmouseover onmouseout
+ //select，input onchange
+ <input TYPE="text" NAME="abc"  id="abcx" value="cba" onclick="alert(this.value)" onchange="alert(this.value)" onpropertychange="document.getElementById('abcy').value = this.value">
+
+ <input TYPE="text" NAME="abc"  id="abcy" value="cba">
+
+  <script language="JavaScript">
+  <!--
+	//宿主对象 window，document
+	//window 是个全局对象，每时每刻都在使用，但是隐式的
+	var s = "aaa";
+	//javascript里访问属性的几种方式
+	//alert(s)
+	//alert(window.s)
+	//alert(window["s"])
+	//打开新窗口
+	//window.open("http://localhost");
+	//获取当前网页的地址
+	//alert(window.location);
+	
+	//代表当前网页的文档结构
+	//body是一个元素，innerHTML是元素的一个属性
+	//innerText
+	//alert(document.body.innerText)
+	//alert(document.body.innerHTML)
+	//document.body.innerHTML = "只有这些";
+
+//alert("1:"+document.all.abc.value)
+//alert("2:"+document.getElementById("abcx").value)
+//document.getElementById("abcx").value = "新内容";
+//alert("3:"+document.getElementsByName("abc")[0].value)
+//alert("4:"+document.getElementsByTagName("input")[0].value)
+
+//正则表达式
+
+  //-->
+  </script>
+ </body>
+</html>

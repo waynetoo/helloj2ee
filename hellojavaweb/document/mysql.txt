@@ -1,0 +1,40 @@
+----首先在命令行下进入到mysql的bin目录，运行mysql -u root -p，然后输入密码
+----如果密码为空可以省略-p，另外这里还可以直接跟上数据库的名称，这样就不需要进入后再use 数据库名了。
+----如果忘记密码可以在google里搜索 mysql 命令 清空密码，资料一堆。
+---- http://dev.mysql.com/doc/refman/5.1/zh/index.html
+\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 64
+Server version: 5.0.51a Source distribution
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+----创建数据库
+mysql> create database helloj2ee default character set gbk;
+Query OK, 1 row affected (0.06 sec)
+----切换到数据库
+mysql> use simplejee;
+Database changed
+----将某个sql文件里的sql执行
+mysql> set names utf8;//这里的编码要和你的sql文件的编码相一致。
+mysql> SET FOREIGN_KEY_CHECKS = 0;//要使得对有外键关系的表重新载入转储文件变得更容易，mysqldump自动在转储输出中包括一个语句设置FOREIGN_KEY_CHECKS为0。这避免在转储被重新装载之时，与不得不被以特别顺序重新装载的表相关的问题。也可以手动设置这个变量： 
+mysql> source c:/simplejee.sql;
+Query OK, 0 rows affected (0.00 sec)
+mysql> SET FOREIGN_KEY_CHECKS = 1;
+----删除数据库
+mysql> drop database simplejee;
+Query OK, 133 rows affected (3.95 sec)
+
+mysql> create database simplejee;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use simplejee;
+Database changed
+mysql> source c:/simplejee0601_0738.sql;
+----从app_user表里查数据
+mysql>select * from app_user;
+
+
+--导出数据 如果密码为空-p可以省略。注意导出是直接在命令行下。
+--如果中文乱码，可以根据情况加上诸如 --default-character-set=gbk的东东
+mysqldump -u root -p simplejee>f:\t.sql

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>xmlHttpRequest</title>
+<script type="text/javascript" src="prototype.js" charset="iso-8859-1"></script>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+var paras = {name:'张三'};
+var onSuccess = function(request){
+	$('box').innerHTML = "<font color='red'>"+request.responseText +"</font>";
+};
+function onComplete(request){alert("onComplete");}
+function onFailure(request){alert("status ="+status +" request.responseText="+request.responseText);}
+var ajax = new Ajax.Request(
+        "test.jsp", 
+	    {
+			method: 'post', 
+			parameters:paras ,
+			onSuccess: onSuccess,
+			onComplete:onComplete,
+			onFailure:onFailure
+	    }
+	);
+</script>
+<!-- 
+$('box')
+这里的$是个函数名，在prototype.js里定义的，其内容如下，约等于document.getElementById：
+function $(element) {
+  if (arguments.length > 1) {
+    for (var i = 0, elements = [], length = arguments.length; i < length; i++)
+      elements.push($(arguments[i]));
+    return elements;
+  }
+  if (typeof element == 'string')
+    element = document.getElementById(element);
+  return Element.extend(element);
+}
+
+ -->
+</body>
+</html>

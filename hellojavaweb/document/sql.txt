@@ -1,0 +1,17 @@
+## create database helloj2ee default character set gbk;
+
+CREATE TABLE worker (
+id int NOT NULL auto_increment,
+name varchar(20) NOT NULL,
+gender varchar(10) default NULL,
+age int(3) default NULL,
+PRIMARY KEY  (`id`)
+);
+CREATE TABLE book (
+id int NOT NULL auto_increment,
+bookname varchar(200) NOT NULL,
+author varchar(100) default NULL,
+price float default NULL,
+publicationDate datetime default NULL,
+PRIMARY KEY  (`id`)
+);

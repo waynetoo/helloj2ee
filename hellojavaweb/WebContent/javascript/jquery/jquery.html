@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>xmlHttpRequest</title>
+<script type="text/javascript" src="jquery-1.4.2.js" charset="iso-8859-1"></script>
+</head>
+<body>
+<table>
+	<tr>
+		<td><a href="#">张三</a></td>
+		<td><a href="#">李四</a></td>
+		<td><a href="#">王五</a></td>
+	</tr>
+</table>
+<input type="button" value="让他们都消失" id="hiddenAll"/>
+<input type="button" value="让他们都回来" class="displayAll"/>
+<input type="button" value="让最后一个消失" class="hiddenLast"/>
+<input type="button" value="捧红第二个" onclick="redFirst()"/>
+<input type="button" value="捧红张三" id="redSpecialBtn"/>
+<br/>
+主要参考了这篇文章<span style="cursor:hand;color:blue" onclick="window.location='http://www.cnblogs.com/wuchang/archive/2007/01/20/625786.html'">[翻译]jQuery 选择器的使用</span>
+<script type="text/javascript">
+
+function attachEvent() {
+	$("a").click(function(event) {//tagName选择
+		event.preventDefault();
+		$(this).hide("slow");
+	});
+	$("#hiddenAll").click(function(event) {//id选择
+		event.preventDefault();
+		$("a").hide("slow");
+	});
+	$(".displayAll").click(function(event) {//class选择
+		event.preventDefault();
+		$("a:hidden").show("slow");
+	});
+	$(".hiddenLast").click(function(event) {
+		event.preventDefault();
+		$("a:last").hide("slow");//带位置的
+	});
+	$("#redSpecialBtn").click(function(event) {
+		event.preventDefault();
+		redSpecial('张三');
+	});
+}
+//$(document).ready(callback)的缩写法
+$(attachEvent);
+
+function redFirst(){
+	$("td:eq(1)>a").css({color: 'red', fontWeight: 'bolder'});//更综合一点的
+	//$("a:eq(1)").css({color: 'red', fontWeight: 'bolder'});//在本例中，这样当然也可以
+}
+function redSpecial(somebody){
+	$("a:contains('张三')").css({color: 'red', fontWeight: 'bolder'});
+}
+</script>
+</body>
+</html>

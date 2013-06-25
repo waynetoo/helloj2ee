@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> js </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ </head>
+
+ <body>
+  <script language="JavaScript">
+  <!--
+	var x = "hello javascript"
+	+ "!!!!!!!!!";
+	//alert(x)
+	function plus(a,b){
+		return a+b;
+	}
+	//在javascript里函数也是对象，只是比较特殊可以调用而已，另外还有个特殊的属性叫prototype。
+	var plusx = function(a,b){
+		return a+b;
+	}
+	//函数分为这么几部分:函数名，参数列表，函数体
+
+	//可以把小括号当做调用函数的操作符，小括号里的内容当做调用时传入的参数
+	//小括号前的内容，表示需要调用的函数对象
+    var r = plusx(3,4);
+	alert("1.3+4="+r);
+
+	var plus2 = plus;
+    var r = plus2(3,4);
+	alert("2.3+4="+r);
+
+    var r = window["plus"](3,4);
+	alert("3.3+4="+r);
+
+
+	function createAFunction(){
+		//yy = "ddddddddd";
+		var minus = function(a,b){
+			return a - b;
+		}
+		return minus;
+	}
+	var f = createAFunction();
+	//alert(yy)
+	alert("3-4="+f(3,4));
+
+	alert("3-4="+createAFunction()(3,4));
+	var fun1 = createAFunction
+	alert(fun1);
+	alert("fun1()="+fun1());
+
+	var x = "sss";
+	alert(x.length)
+	var y = 134;
+	x = y;
+	alert(x.length)
+
+	//json
+	var classes = [ ];//List
+	classes[3] = "sssssssss";
+	a = {
+		xx:"ddd"
+	}
+	z = {
+		name:"Tom",
+		age:12,
+		classes:classes,
+		sss:a
+	};//Map
+	alert("z.name="+z.name)
+	z.gender="male";//map.put("gender","male");
+
+	alert(z.sss.xx);//map.get("name")
+
+
+  //-->
+  </script>
+ </body>
+</html>

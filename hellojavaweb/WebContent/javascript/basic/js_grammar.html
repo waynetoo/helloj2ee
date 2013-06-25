@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> new document </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ </head>
+
+ <body>
+  <script language="JavaScript">
+  <!--
+	//javascript是一种基于原型的面向对象语言，动态的，弱类型检查的，解释性的语言
+	//最常见的javascript解释器就是浏览器
+	//
+	//函数 --- 函数也是对象，可以执行，具有一个特殊的prototype属性
+	//new --- 创建一个对象，然后调用new之后指定的函数（在该函数里可以通过this访问到创建的这个对象），然后返回该对象的引用
+
+	//继承 --- 基于原型的继承，是继承一个对象，通过函数的prototype来继承
+	//        new操作符创建出的对象，具有其构造函数的prototype属性对象的所有属性和方法，
+	//        而该prototype属性对象同样具有其自身构造函数的prototype属性对象的所有属性和方法。。。。。。。
+
+	//随时可以给对象添加属性
+
+	//也可以写成 var HelloWorld = function(){...}
+	function HelloWorld(){
+		this.name = "Tom";
+		this.greeting=function(){
+			alert("hello "+this.name);
+		}
+	}
+	var h = new HelloWorld();
+	h.greeting();
+
+	function BaseClass(){
+	
+	}
+	BaseClass.prototype.what=function(){alert("what!!!")}
+	HelloWorld.prototype=new BaseClass();
+	HelloWorld.prototype.name2="";
+	HelloWorld.prototype.sayHello=function(name){alert("hellox "+name);}
+
+	var h = new HelloWorld();
+	h.what();
+	h.name="Jack";
+	h["greeting"]();
+	h.sayHello("xxxxxxx");
+	h.sayHello2=function(){alert("sayHello2");}
+	h.sayHello2();
+
+	var h2 = new HelloWorld();
+
+	h2.name="Mary";
+	h2.greeting();
+	h2.sayHello("yyy");
+	//h2.sayHello2();
+  //-->
+  </script>
+ </body>
+</html>

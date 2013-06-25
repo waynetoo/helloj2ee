@@ -1,0 +1,27 @@
+
+/* SINGLE PROGRESS BAR */
+
+.progressBar{
+	width:216px;
+	height:41px;
+	background:url(bg_bar.gif) no-repeat 0 0;
+	position:relative;
+}
+.progressBar span{
+	position:absolute;
+	display:block;
+	width:200px;
+	height:25px;
+	background:url(bar.gif) no-repeat 0 0;
+	top:8px;
+	left:8px;
+	overflow:hidden;
+}
+.progressBar em{
+	position:absolute;
+	display:block;
+	width:200px;
+	height:25px;
+	background:url(bg_cover.gif) repeat-x 0 0;
+	top:0;
+}

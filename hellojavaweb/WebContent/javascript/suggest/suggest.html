@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>suggest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="suggest.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="commontools.js"></script>
+<script type="text/javascript" src="suggest.js"></script>
+<script type="text/javascript">
+  	function $(idStr){return document.getElementById(idStr);}
+  </script>
+</head>
+<body>
+suggest的演示，在输入框中双击，或则填写内容会出来下拉框，
+选择某条记录，会在后面的单元格里显示其另外的相关信息。
+<table border="1">
+	<tr>
+		<td>姓名</td>
+		<td>性别</td>
+		<td>年龄</td>
+	</tr>
+	<tr>
+		<td><input type="text" id="suggest1"></td>
+		<td id="gender1"></td>
+		<td id="age1"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="suggest2"></td>
+		<td id="gender2"></td>
+		<td id="age2"></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="suggest3"></td>
+		<td id="gender3"></td>
+		<td id="age3"></td>
+	</tr>
+</table>
+<script type="text/javascript">
+	function setValueCallback(){
+	 	this.inputTextChange();
+	}
+	var children = [
+	            	{name:"Tom",gender:"boy",age:12},
+	            	{name:"Jack",gender:"boy",age:22},
+	            	{name:"Mary",gender:"girl",age:6},
+	            	{name:"Jim",gender:"boy",age:32}
+	            	];
+	function getItems(){
+		var w = $(this.inputTxt).value;
+		var newArr = [];
+		for(var i = 0; i < children.length; i++){
+			if(children[i].name.toLowerCase().indexOf(w)>-1){
+				newArr.push(children[i]);//如果该对象没有name值的话，需要添加一个name值。
+			}
+		}
+		return newArr;
+	}
+	function inputTextChange(){
+		//this.currentDiv 表示当前选中的条目
+		//this.currentDiv.dataObj表示当前选中的条目的数据对象
+		if(!(this.currentDiv && this.currentDiv.dataObj))return;
+		$("gender"+this.index).innerText = this.currentDiv.dataObj.gender;
+		$("age"+this.index).innerText = this.currentDiv.dataObj.age;
+	}
+	for(var i = 1; i < 4; i++){
+		var x = new inputSuggest({inputTxt:"suggest"+i},setValueCallback);
+		x.getItems = getItems;//获取数据，返回一个数组，数组元素至少含有一个name的属性
+		x.index = i;//这是本测试程序自身添加的一个属性，suugest并没有此要求
+		x.inputTextChange = inputTextChange;//当使用方向键选择下拉框内容时触发本方法
+		//setValueCallback是当选定某个选项时调用的方法
+	}
+  </script>
+</body>
+</html>

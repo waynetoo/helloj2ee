@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> function and this </TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ </HEAD>
+
+ <BODY>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+//javascript的继承:继承对象的构造函数的原型的属性
+function A(){
+	this.str = "aaaa";
+}
+A.prototype.foo=function(){
+	alert("foo: this.str="+this.str);
+}
+
+A.prototype.str2="str2str2";
+function test2(){
+	alert("test2: this.str2="+this.str2);
+}
+A.prototype.foo2=test2;
+
+a = new A;//A 函数里的this是这里new出来的，即a指向的对象
+a.foo();//这里执行的函数是a指向对象的构造函数的prototype的foo属性指向的函数
+a.str = "bbbb";//给a的str属性赋值
+a.foo();//再次执行
+
+//foo2指向的是test2函数，这次执行获取的this.str2的值是A函数的prototype对象的str2属性的值
+//因为a对象本身没有str2这个属性，
+a.foo2();
+a.str2 = "ccccccc";//给a对象添加一个str2的属性
+a.foo2();//这次执行，this.str2是a对象的属性，相当于覆盖了“父类”的属性
+
+test2.apply(a);//参看下面的例子
+
+
+//使用apply来执行函数，理解函数里的this是指向谁
+function test3(v,v2){
+	alert(this.msg)
+	alert("v="+v+"     v2="+v2)
+}
+
+xx = {
+  msg: "xxxxxxxxxxxx"
+}
+
+yy = new Object;
+yy.msg = "yyyyyyyyyy";
+//执行test3这个函数，在test3执行时，函数里的this是指向apply的第一个参数
+//后面的数组的元素，分别对应test3函数的各个参数，另外google一下call和apply的区别
+test3.apply(xx,["111111111","2222222222"]);//call
+test3.apply(yy,["xxxxxxxxxxx","cccccccccccc"]);
+
+//apply实现的效果比较类似java里的反射
+//Method m = ....;
+//m.invoke(obj,args);
+
+  //-->
+  </SCRIPT>
+ </BODY>
+</HTML>

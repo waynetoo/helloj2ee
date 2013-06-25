@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>xmlHttpRequest</title>
+</head>
+<body>
+<script type="text/javascript">
+var xhr = function(){
+	      try{
+		      return new XMLHttpRequest();
+	      }catch(e){
+			  try{
+			  return new ActiveXObject('Msxml2.XMLHTTP');
+			  }catch(e){return new ActiveXObject('Microsoft.XMLHTTP');}
+		   }
+	      }();
+//-----------异步方式------------
+	function handler() {
+	 if(this.readyState == 4 && this.status == 200) {
+	  // so far so good
+	  //alert(this.responseText);
+	  var v = this.responseXML.documentElement.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+	  alert(v)
+	 } else if (this.readyState == 4 && this.status != 200) {
+	  // fetched the wrong page or network error...
+	  alert("something is wrong!");
+	 }
+	}
+
+	xhr.onreadystatechange = handler;
+	xhr.open("GET", "test.xml");
+	xhr.send();
+	alert("sss");
+//-----------同步方式------------
+	xhr.open("GET", "test.xml",false);
+	xhr.send();
+	alert(xhr.responseText);
+	
+</script>
+</body>
+</html>

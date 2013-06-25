@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>helloj2ee</display-name>
+		<filter>
+			<description>解决中文问题</description>
+			<filter-name>characterEncoding</filter-name>    
+			<filter-class>com.yuqiaotech.helloj2ee.webapp.servlet.CharacterEncodingFilter</filter-class>    
+		</filter>    
+	  <filter>
+	  	<description>没啥实质内容，仅用来演示过滤器如何写，如何配置</description>
+	    <display-name>SampleFilter</display-name>
+	    <filter-name>SampleFilter</filter-name>
+		<filter-class>com.yuqiaotech.helloj2ee.webapp.servlet.SampleFilter</filter-class>
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>myFilter</param-value>
+		</init-param>
+	  </filter>
+	  <filter>
+		<description>用来对访问进行统计的例子</description>
+	    <filter-name>SimpleClickstreamFilter</filter-name>
+		<filter-class>com.yuqiaotech.helloj2ee.webapp.servlet.SimpleClickstreamFilter</filter-class>
+	  </filter>
+	  <!-- filter mapping -->
+		<filter-mapping>
+			<filter-name>characterEncoding</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
+	  <filter-mapping>
+	    <filter-name>SimpleClickstreamFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	  </filter-mapping>
+	  <filter-mapping>
+	    <filter-name>SampleFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	  </filter-mapping>
+	<!-- servlet -->
+	<servlet>
+		<description>仅仅用来演示servlet如何写，如何配置</description>
+		<display-name>SampleServlet</display-name>
+		<servlet-name>SampleServlet</servlet-name>
+		<servlet-class>com.yuqiaotech.helloj2ee.webapp.servlet.SampleServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>演示forward方法的使用，在jsp</description>
+		<servlet-name>ForwardServlet</servlet-name>
+		<servlet-class>com.yuqiaotech.helloj2ee.webapp.servlet.ForwardServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>加法器</description>
+		<servlet-name>PlusServlet</servlet-name>
+		<servlet-class>com.yuqiaotech.helloj2ee.webapp.servlet.PlusServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>猜数字</description>
+		<servlet-name>NumberGuessServlet</servlet-name>
+		<servlet-class>com.yuqiaotech.helloj2ee.webapp.servlet.NumberGuessServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>书籍管理</description>
+		<servlet-name>bookAdmin</servlet-name>
+		<servlet-class>com.yuqiaotech.helloj2ee.webapp.crud.BookAdmin</servlet-class>
+	</servlet>
+	<servlet>
+		<description>书籍管理2，运行的时候需要将/WebContent/javaweb/crud下面的jsp里的路径修改为bookAdmin2</description>
+		<servlet-name>bookAdmin2</servlet-name>
+		<servlet-class>com.yuqiaotech.helloj2ee.webapp.crud2.BookAdmin2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NumberGuessServlet</servlet-name>
+		<url-pattern>/numberGuessServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>bookAdmin</servlet-name>
+		<url-pattern>/bookAdmin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>bookAdmin2</servlet-name>
+		<url-pattern>/bookAdmin2</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PlusServlet</servlet-name>
+		<url-pattern>/plusservlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SampleServlet</servlet-name>
+		<url-pattern>/SampleServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ForwardServlet</servlet-name>
+		<url-pattern>/forward</url-pattern>
+	</servlet-mapping>
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>UserDispatcherServlet</servlet-name> -->
+<!-- 		<url-pattern>/userAdmin</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+
+	<listener>
+		<listener-class>com.yuqiaotech.helloj2ee.webapp.servlet.SessionListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.yuqiaotech.helloj2ee.webapp.servlet.ContextSetupListener</listener-class>
+	</listener>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

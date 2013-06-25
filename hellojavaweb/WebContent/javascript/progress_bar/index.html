@@ -1,0 +1,65 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pure Css Progress Bar</title>
+<link rel="stylesheet" href="progress_bar.css" type="text/css" media="screen" />
+<script language="JavaScript" src="progress_bar.js">
+</script>
+</meta>
+
+
+</head>
+<body>
+	<div id="test2ProgressBarDiv" class="progressBar">
+		<span><em id="test2ProgressBarEm" style="left:0px; text-align: center"></em></span>
+	</div>
+<input type="button" value="隐藏" onclick="progressBar2.hidden()"><BR>
+	<div id="testProgressBarDiv" class="progressBar">
+		<span><em id="testProgressBarEm" style="left:0px; text-align: center"></em></span>
+	</div>
+<input type="button" value="隐藏" onclick="progressBar.hidden()"><BR>
+	<div id="test3ProgressBarDiv" class="progressBar">
+		<span><em id="test3ProgressBarEm" style="left:0px; text-align: center"></em></span>
+	</div>
+<input type="button" value="隐藏" onclick="progressBar3.hidden()"><BR>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+	//如果参数是test那么对应的进度条的id的值应为testProgressBarEm
+	var progressBar = new ProgressBar("test");
+	progressBar.type = "loop";//类型，loop表示循环
+	progressBar.period = 3000;
+	progressBar.times = 2;//只循环一次
+	progressBar.start();
+
+	var progressBar2 = new ProgressBar("test2");
+	progressBar2.type = "loop";//类型，loop表示循环
+	progressBar2.period = 6000;
+	progressBar2.times = -1;//无限循环
+	//progressBar2.barLength = 300;//尚未支持
+	progressBar2.start();
+
+	//这种方式是给你自己控制进度用的
+	var progressBar3 = new ProgressBar("test3");
+	progressBar3.type = "asign";//类型，asign表示指定进度
+	progressBar3.start();
+
+
+	function goForward(){
+		var v = document.getElementById('percentTxt').value;
+		document.getElementById('percentTxt').value = v*1+5;
+		progressBar3.setPercent(v*1+5)
+	}
+	function goBack(){
+		var v = document.getElementById('percentTxt').value;
+		document.getElementById('percentTxt').value = v*1-5;
+		progressBar3.setPercent(v*1-5)
+	}
+//-->
+</SCRIPT>
+<input type="button" value="&lt;&lt;" onclick="goBack()">
+<input type="text" id="percentTxt" size="5" value="0"/>%
+<input type="button" value="&gt;&gt;" onclick="goForward()">
+</body>
+</html>

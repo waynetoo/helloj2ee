@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+  <title> new document </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ </head>
+
+ <body>
+ 这个网页表述的还比较清楚 http://homepage.yesky.com/96/2612596.shtml
+ 
+<script type="text/javascript"> 
+function say667() { 
+ // Local variable that ends up within closure 
+ var num = 666; 
+ var sayAlert = function(str) { alert(str+(++num)); } 
+ num++; 
+ return sayAlert; 
+}
+
+var sy = say667(); 
+var sy2 = say667(); 
+sy("sy 第1次:"); 
+sy("sy 第2次:"); 
+sy("sy 第3次:"); 
+sy2("sy2 第1次:"); 
+sy2("sy2 第2次:"); 
+
+alert(sy.toString()); 
+</script>
+
+ <a href="#">x</a>
+ <a href="#">x</a>
+ <a href="#">x</a>
+ <a href="#">x</a>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+var arches = document.getElementsByTagName("A");
+for(var i = 0; i < 4; i++){
+	function produceFuntion(){
+		var j = i;
+		return function(){
+			alert("我是第"+j+"个。");
+			return false;
+		}
+	}
+	//an internal function with some arguments already bound to values
+	//produceFuntion每次执行返回一个函数，还带着一个闭包。
+	//闭包，我理解为一个未释放的栈区
+	//当produceFuntion执行时，会创建一个栈区，存放变量的值，
+	//当produceFuntion执行完，返回一个函数对象时，该栈区仍然存在，并且内容不再发生变化
+	//当produceFuntion再次执行时，会再创建一个栈区。。。。
+	//返回的函数仍然可以访问这个栈区。
+	arches[i].onclick=produceFuntion();
+}
+  //-->
+  </SCRIPT>
+
+ </body>
+</html>

@@ -1,0 +1,11 @@
+input.validation-failed, textarea.validation-failed {
+	border: solid red 1px;
+	color : #FF3300;
+}
+.validation-advice {
+	margin: 5px 0;
+	padding: 5px;
+	background-color: #FF3300;
+	color : #FFF;
+	font-weight: bold;
+}

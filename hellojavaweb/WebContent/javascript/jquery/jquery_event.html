@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>xmlHttpRequest</title>
+<script type="text/javascript" src="jquery-1.4.2.js" charset="iso-8859-1"></script>
+</head>
+<body>
+<script type="text/javascript">
+//键盘监听，右键监听
+$(foo);
+function foo(){
+	/*屏蔽右键*/
+	$(document).bind("contextmenu",function(e){
+		alert("no 右键菜单。");
+		return false;
+	});
+
+	/*屏蔽几个按键*/
+	$(document).keydown(function(e){
+		//116是F5
+		if(e.keyCode==116){
+			alert('大哥不要刷屏！');
+			e.originalEvent.keyCode = 0;
+			return false;
+		}
+		if(e.keyCode==8){
+			alert('不好使用退格键！');
+			e.preventDefault();
+			return false;
+		}
+		if(
+			(e.keyCode==37 || e.keyCode==39)
+			&& e.altKey
+		){
+			alert('不准使用ALT+方向键前进或后退网页！！');
+			e.preventDefault();
+			return false;
+		}
+	});
+}
+
+</script>
+</body>
+</html>

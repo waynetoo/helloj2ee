@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> javascript 基本语法</TITLE>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  
+ </HEAD>
+
+ <BODY>
+  <SCRIPT LANGUAGE="JavaScript">
+  <!--
+//1、变量 和 java里变量的区别
+var v = 1;
+alert(typeof v)
+alert(v.constructor);
+v = "323";
+alert(typeof v)
+alert(v.constructor);
+v = true;
+alert(typeof v)
+alert(v.constructor);
+
+var vx = "123";
+window["vx"] = "123";
+alert(window["vx"])
+
+//变量作用域
+s = 123;
+function scopeTest(){
+	alert(s)
+	//var s;
+	s = 1;
+	alert(s)
+
+	for(var i =0; i < 2; i++){
+		
+	}
+
+	alert(i);
+}
+scopeTest();
+
+
+//2、javascript里数据有哪些类型，对象的产生方式有几种
+//Undefined,null,Boolean,String,Number,Object
+
+//null 和 undefined
+var x;
+alert(typeof x)
+alert(x)
+
+x = null;
+alert(typeof x)
+alert( x)
+
+alert(x == undefined);
+alert(x == null);
+alert(undefined == null);
+alert(undefined === null);
+
+  //javascript的真与假
+var t = new Boolean(true);
+alert(t)
+
+var t = true;
+alert(t)
+
+	var s = 0;//-1,0,1
+	if(s){alert(true)}else{alert(false)}
+/*
+Undefined	false
+Null		false
+Boolean		The result equals the input argument (no conversion).
+Number		The result is false if the argument is 0 or NaN otherwise the result is true.
+String		The result is false if the argument is the empty string (its length is zero); otherwise the result is true.
+Object		true
+*/
+//Number
+var n = 1/0;
+alert(n)
+n = parseInt("xxxx");
+alert(n)
+alert(n == NaN)
+alert(isNaN(n))
+
+//3、何谓javascript的对象--Object类型的数据，有属性和方法，并且可以使用 . 来访问其属性和方法。
+//如何创建一个对象
+//new 创建一个对象，调用new之后的函数，该函数被执行，返回该对象的引用
+//在该函数被执行的时候，在函数体里，可以使用this来代指上述的对象
+
+var d = new Date;
+alert(typeof d);
+alert( d.constructor);
+
+
+//在javascript里，function是一等公民，function也是对象
+//我们把小括号理解为函数调用的操作符
+function foo(){
+	alert("i am "+this.username);
+}
+alert(typeof foo)
+alert(foo.constructor)
+foo();
+
+
+function User(){
+	this.userType = "Student";
+	this.whoIAm = foo;
+}
+var u = new User;
+var u2 = new User;
+alert(u.constructor)
+alert(u.whoIAm)
+
+u.whoIAm();
+
+alert(u.userType)
+alert(u2.userType)
+
+
+	//json对象
+var json = {
+	a : "123",
+	b : 321
+};
+alert(json.a)
+
+var o = new Object;
+alert(json.constructor == o.constructor )
+
+//函数
+
+//如何定义函数，如何执行函数
+
+function foox(a,b){
+alert(a + b)
+}
+foox(1,2);
+foox("11","ccc");
+foox("11");
+var f = "foox";
+window[f]("abc","cba");
+window.foox("abc","cba");
+
+var fooy = foox;
+fooy("111111","oooooooo");
+
+var fooz = function(){
+	alert("fooz");
+}
+fooz();
+
+
+(
+function test(name){
+	alert("hello "+name)
+}
+)("Tom");
+
+//4、函数具有构造性,javascript里new的功能
+function foo(){
+	this.x = "123";
+}
+//可以尝试互换以下两句的位置，看看输出结果的区别
+var f = new foo;
+//foo.prototype = {x:"321"};
+
+alert(f.x);
+alert(f.constructor);
+
+
+
+//5、prototype 面向对象的javascript的继承机制
+//javascript的函数有个特殊的属性叫prototype，
+//使用该函数构造出的对象具有该函数的prototype对象的属性和方法
+//以及prototype对象的构造函数的prototype对象的属性和方法。
+//更详细的内容可以再搜搜网上的例子。
+
+var p = {
+	x : "123",
+	y : 321,
+	f : function(){
+	
+	alert("f this.x="+this.x)
+	alert("f this.contructor="+this.constructor);
+	}
+}
+
+function fx(){
+	this.hello=function(){
+		alert("hello this.x="+this.x)
+		alert("hello this.contructor="+this.constructor);
+	}
+}
+
+//可以尝试互换一下下面两句的位置
+fx.prototype = p;
+var fx1 = new fx();
+fx1.f();
+fx1.hello("Tom");
+alert("fx1.constructor="+fx1.constructor);
+
+
+function fxx(){}
+var fxObj = new fx;
+fxx.prototype=fxObj;
+var fxxObj = new fxx;
+fxxObj.f();//f这个方法是fxx函数的prototype对象(fxObj)的构造函数fx的prototype对象的方法。
+
+// 6、apply和call  -- method.invoke
+city = "北京";
+function hello2(name,name2){
+	alert(name+"和"+name2 + "去" + this.city)
+}
+
+hello("Tom","Jack");
+//window.hello("Tom","Jack");
+
+hello2.prototype.city='西藏';
+var h = new hello2("Tom","Jack");
+
+
+var j = {city : "新疆"};
+hello2.apply(j,["拉登","奥马尔"]);//hello2执行的时候，方法体内的this就是指向j
+
+hello2.call(j,"拉登","奥马尔");
+
+
+
+
+//其他
+//--类似java的增强for循环 -- 可不是学java的，也只是类似
+
+	var a = [4,52,25];
+	for(var i in a){
+		alert(i+"="+a[i])
+	}
+
+	var j = {a:"aaa",b:'xxxx'}
+	for(var i in j){
+		alert(i+"="+j[i])
+	}
+
+//eval  Eval is Evil
+	var s = "var x = 'abc';alert(x);";
+	eval(s);
+  //-->
+  </SCRIPT>
+ </BODY>
+</HTML>

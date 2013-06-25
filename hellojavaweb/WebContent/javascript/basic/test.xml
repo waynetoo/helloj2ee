@@ -1,0 +1,4 @@
+<list>
+	<node id="1"><name alias="李逵">张三</name><space>http://wishlife.javaeye.com</space></node>
+	<node><name id="abc">李四</name><space>http://user.qzone.qq.com/94611981</space></node>
+</list>  

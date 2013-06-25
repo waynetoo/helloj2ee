@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>validation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="validation.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="prototype.js"></script>
+<script type="text/javascript" src="simple_validation.js"></script>
+<script type="text/javascript">
+	function beforeSubmit(){
+		if(simpleValidation.validation(document.editForm)){
+			alert("验证通过，即将提交表单。");
+			return true;
+		}
+		alert("验证没通过，请看相关提示。");
+		return false;
+	}
+</script>
+</head>
+<body>
+<form action="" name="editForm">
+<table border="1">
+	<tr>
+		<td>姓名</td>
+		<td><input type="text" name="name" class="required"></td>
+	</tr>
+	<tr>
+		<td>年龄</td>
+		<td><input type="text" name="age" class="validate-digits"></td>
+	</tr>
+	<tr>
+		<td>生日</td>
+		<td><input type="text" name="birthday" class="validate-date-cn"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="submit" value="确定" onclick="return(beforeSubmit())"></td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
